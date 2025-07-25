@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+  1. Các lỗi JWT phổ biến
+  	Token hết hạn
+  	Token bị sửa đổi
+  	Token không hợp lệ
+  	Không có token
+  	Token thuộc user không tồn tại
+  2. Ví dụ response từ server khi gặp lỗi
+  a. Token hết hạn
+  HTTP/1.1 401 Unauthorized
+  {
+  "error": "TokenExpiredError",
+  "message": "JWT has expired"
+  }
+  b. Token bị sửa đổi (sai chữ ký)
+  HTTP/1.1 401 Unauthorized
+  {
+  "error": "JsonWebTokenError",
+  "message": "Invalid signature"
+  }
+  c. Token không hợp lệ (cấu trúc sai)
+  HTTP/1.1 400 Bad Request
+  {
+  "error": "JsonWebTokenError",
+  "message": "JWT is malformed"
+  }
+  d. Không có token
+  HTTP/1.1 401 Unauthorized
+  {
+  "error": "Unauthorized",
+  "message": "Authorization token is missing"
+  }
+  e. Token thuộc user không tồn tại
+  HTTP/1.1 403 Forbidden
+  {
+  "error": "InvalidUser",
+  "message": "User not found"
+  }
+  3. Hành động phù hợp ở client
+  Token hết hạn
+  - Thử gửi refresh token để lấy access token mới.
+  - Nếu refresh token cũng hết hạn → logout.
+
+  Token bị sửa đổi / không hợp lệ
+  - Hiển thị thông báo "Phiên đăng nhập không hợp lệ".
+  - Xóa token, chuyển hướng về trang đăng nhập.
+
+  Không có token
+  - Chuyển hướng người dùng đến trang login.
+
+  Token thuộc user không tồn tại
+  - Hiển thị thông báo "Tài khoản không tồn tại".
+  - Logout người dùng.
+
+  Token sai loại (ví dụ: access dùng thay refresh)
+  - Hiển thị lỗi và báo dev nếu là lỗi do lập trình.
+</div>
+</body>
+</html>

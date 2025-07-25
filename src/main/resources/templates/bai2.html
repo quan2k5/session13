@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+     Sơ đồ:
+    [1] Client gửi thông tin đăng nhập (username, password)
+    |
+    v
+    [2] Server xác thực thông tin -> Nếu đúng:
+    |
+    v
+    [3] Server tạo JWT (gồm: Header, Payload, Signature)
+    |
+    v
+    [4] Server gửi JWT về cho Client (thường trong response)
+    |
+    v
+    [5] Client lưu JWT (thường trong localStorage hoặc cookie)
+    |
+    v
+    [6] Client gửi JWT kèm theo mỗi request (thường trong Authorization Header)
+    |
+    v
+    [7] Server kiểm tra JWT:
+    - Giải mã (decode)
+    - Xác minh chữ ký (verify)
+    - Kiểm tra hạn sử dụng (exp)
+    |
+    v
+    [8] Nếu hợp lệ -> Cho phép truy cập tài nguyên bảo vệ
+    Nếu không hợp lệ -> Trả lỗi (401 Unauthorized)
+
+    Vai trò các bước:
+    Bước 1: Client gửi yêu cầu đăng nhập
+    Vai trò: Xác thực danh tính người dùng lần đầu bằng username/password.
+    Bước 2: Server xác thực thông tin
+    Vai trò: Kiểm tra xem thông tin đăng nhập có đúng không (so sánh với DB).
+    Bước 3: Server tạo JWT
+    Vai trò: Tạo token đại diện cho phiên đăng nhập của người dùng.
+    Bước 4: Server gửi JWT về cho client
+    Vai trò: Gửi token cho client để sử dụng ở các lần request sau.
+    Bước 5: Client lưu token
+    Vai trò: Lưu token để sử dụng trong các request tiếp theo.
+    Bước 6: Client gửi JWT trong mỗi request
+    Vai trò: Gửi token để chứng minh đã xác thực.
+    Bước 7: Server kiểm tra token
+    Vai trò: Xác minh xem token có hợp lệ không:
+    Bước 8: Truy cập tài nguyên
+    Nếu token hợp lệ: Cho phép truy cập (ví dụ: trả danh sách user, sản phẩm,...).
+    Nếu không hợp lệ: Trả lỗi 401 Unauthorized hoặc 403 Forbidden.
+</div>
+</body>
+</html>

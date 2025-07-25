@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <div>
+     JWT (JSON Web Token) là một tiêu chuẩn mở (RFC 7519) dùng để truyền tải thông tin giữa các bên
+     một cách an toàn dưới dạng một đối tượng JSON được mã hóa. Nó thường được dùng để xác thực (authentication)
+     và phân quyền (authorization) trong các hệ thống web.
+     Vai trò của JWT:
+     Xác thực: Sau khi người dùng đăng nhập thành công, server tạo JWT và gửi về client. Token này sẽ được dùng trong các lần request tiếp theo để xác minh danh tính người dùng.
+     Phân quyền: JWT có thể chứa thông tin quyền truy cập (roles, scopes) giúp server quyết định quyền của người dùng trong hệ thống.
+     Ưu điểm:
+     +Không cần lưu trạng thái (stateless)
+     +Dễ mở rộng
+     +Tăng hiệu suất
+     +Bảo mật tốt
+     Nhược điềm:
+     +Không thể thu hồi dễ dàng
+     +Kích thước lớn hơn session token
+     +Không nên chứa thông tin nhạy cảm:
+
+     Vi du:
+     eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+     eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.
+     SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+     Header:Chứa thông tin về thuật toán ký và loại token:
+     Payload:Chứa dữ liệu (claims) như thông tin người dùng, thời gian hết hạn, vai trò
+     Signature:Được tạo bằng cách ký base64UrlEncode(header) + "." + base64UrlEncode(payload) với secret key
+
+     Các trường hợp sử dụng phổ biến của JWT:
+     Xác thực người dùng
+     Phân quyền người dùng
+     Trao đổi thông tin giữa các dịch vụ
+     Xác thực OAuth 2.0 và SSO
+     Xác thực API giữa client và server hoặc giữa các backend services.
+
+
+
+
+
+ </div>
+</body>
+</html>
